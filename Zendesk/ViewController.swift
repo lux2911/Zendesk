@@ -50,10 +50,7 @@ struct FetchArticlesAsyncAction: AsyncAction
         
         URLSession(configuration: .default).dataTask(with: url) { data, response, error in
             
-            
             var resp = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
-            
-            let prevState = getState()
             
             var list = ArticlesList(articles: [], totalArticlesCount: (resp["count"] as? Int)!, nextPage: resp["next_page"] as? String)
             
@@ -65,6 +62,8 @@ struct FetchArticlesAsyncAction: AsyncAction
                 
                 list.articles.append(item)
             }
+            
+            let prevState = getState()
             
             if let prevJson = prevState.value(forKey: "FetchArticles") as? FetchArticles
             {
@@ -171,19 +170,16 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleCell") as! ArticleCell
-        
-        
+               
         let article = articles.articles[indexPath.row]
         
         cell.lblTitle.text = article.title
         
         
-        if let d = article.lastUpdate.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss'Z'")
+        if let date = article.lastUpdate.toDate(dateFormat: "yyyy-MM-dd'T'HH:mm:ss'Z'")
         {
-            cell.lblLastUpdated.text = d.toString(dateFormat: "yyyy-MM-dd HH:mm:ss")
+            cell.lblLastUpdated.text = date.toString(dateFormat: "yyyy-MM-dd HH:mm:ss")
         }
-        
-        
         
         return cell
        
@@ -236,8 +232,7 @@ extension String
         dateFormatter.dateFormat = format
                
         return dateFormatter.date(from: self)
-        
-        
+                
     }
 }
 

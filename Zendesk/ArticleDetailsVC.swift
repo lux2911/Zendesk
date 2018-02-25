@@ -18,7 +18,7 @@ class ArticleDetailsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
+        
         webView.loadHTMLString(body, baseURL: nil)
        
     }
