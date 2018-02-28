@@ -1,0 +1,6 @@
+framework module Suas {
+  umbrella header "Suas-umbrella.h"
+
+  export *
+  module * { export * }
+}

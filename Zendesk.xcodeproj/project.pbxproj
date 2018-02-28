@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		53AE84B42042F88C00D81513 /* ArticleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AE84B32042F88C00D81513 /* ArticleCell.swift */; };
 		53AE84B620431DD400D81513 /* ArticleDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AE84B520431DD400D81513 /* ArticleDetailsVC.swift */; };
+		53B09EF42045F9CB00E0FC7D /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B09EF32045F9CB00E0FC7D /* NetworkClient.swift */; };
+		53B09EF62046107300E0FC7D /* ZendeskOnlineTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B09EF52046107300E0FC7D /* ZendeskOnlineTest.swift */; };
+		53B09EF82046137100E0FC7D /* articles.json in Resources */ = {isa = PBXBuildFile; fileRef = 53B09EF72046137100E0FC7D /* articles.json */; };
 		53CB67D120419DE0003E3E94 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB67D020419DE0003E3E94 /* AppDelegate.swift */; };
 		53CB67D320419DE0003E3E94 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53CB67D220419DE0003E3E94 /* ViewController.swift */; };
 		53CB67D620419DE0003E3E94 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53CB67D420419DE0003E3E94 /* Main.storyboard */; };
@@ -33,6 +36,9 @@
 		0381B4A906F96AA2D48BC708 /* Pods-Zendesk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zendesk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Zendesk/Pods-Zendesk.release.xcconfig"; sourceTree = "<group>"; };
 		53AE84B32042F88C00D81513 /* ArticleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCell.swift; sourceTree = "<group>"; };
 		53AE84B520431DD400D81513 /* ArticleDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailsVC.swift; sourceTree = "<group>"; };
+		53B09EF32045F9CB00E0FC7D /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
+		53B09EF52046107300E0FC7D /* ZendeskOnlineTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZendeskOnlineTest.swift; sourceTree = "<group>"; };
+		53B09EF72046137100E0FC7D /* articles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = articles.json; sourceTree = "<group>"; };
 		53CB67CD20419DE0003E3E94 /* Zendesk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Zendesk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		53CB67D020419DE0003E3E94 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		53CB67D220419DE0003E3E94 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -102,6 +108,7 @@
 		53CB67CF20419DE0003E3E94 /* Zendesk */ = {
 			isa = PBXGroup;
 			children = (
+				53B09EF72046137100E0FC7D /* articles.json */,
 				53CB67D020419DE0003E3E94 /* AppDelegate.swift */,
 				53CB67D220419DE0003E3E94 /* ViewController.swift */,
 				53CB67D420419DE0003E3E94 /* Main.storyboard */,
@@ -110,6 +117,7 @@
 				53CB67DC20419DE0003E3E94 /* Info.plist */,
 				53AE84B32042F88C00D81513 /* ArticleCell.swift */,
 				53AE84B520431DD400D81513 /* ArticleDetailsVC.swift */,
+				53B09EF32045F9CB00E0FC7D /* NetworkClient.swift */,
 			);
 			path = Zendesk;
 			sourceTree = "<group>";
@@ -117,6 +125,7 @@
 		53CB67E420419DE0003E3E94 /* ZendeskTests */ = {
 			isa = PBXGroup;
 			children = (
+				53B09EF52046107300E0FC7D /* ZendeskOnlineTest.swift */,
 				53CB67E520419DE0003E3E94 /* ZendeskTests.swift */,
 				53CB67E720419DE0003E3E94 /* Info.plist */,
 			);
@@ -223,6 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53B09EF82046137100E0FC7D /* articles.json in Resources */,
 				53CB67DB20419DE0003E3E94 /* LaunchScreen.storyboard in Resources */,
 				53CB67D820419DE0003E3E94 /* Assets.xcassets in Resources */,
 				53CB67D620419DE0003E3E94 /* Main.storyboard in Resources */,
@@ -327,12 +337,10 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Zendesk/Pods-Zendesk-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Suas/Suas.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Suas.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +356,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53AE84B620431DD400D81513 /* ArticleDetailsVC.swift in Sources */,
+				53B09EF42045F9CB00E0FC7D /* NetworkClient.swift in Sources */,
 				53CB67D320419DE0003E3E94 /* ViewController.swift in Sources */,
 				53CB67D120419DE0003E3E94 /* AppDelegate.swift in Sources */,
 				53AE84B42042F88C00D81513 /* ArticleCell.swift in Sources */,
@@ -359,6 +368,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53CB67E620419DE0003E3E94 /* ZendeskTests.swift in Sources */,
+				53B09EF62046107300E0FC7D /* ZendeskOnlineTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

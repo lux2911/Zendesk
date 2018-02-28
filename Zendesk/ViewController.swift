@@ -48,7 +48,9 @@ struct FetchArticlesAsyncAction: AsyncAction
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        URLSession(configuration: .default).dataTask(with: url) { data, response, error in
+        let client = NetworkClient(session: URLSession(configuration: .default))
+        
+        client.get(url: url, callback: { (data, response, error) in
             
             var resp = try! JSONSerialization.jsonObject(with: data!, options: []) as! [String: Any]
             
@@ -71,20 +73,20 @@ struct FetchArticlesAsyncAction: AsyncAction
                 {
                     let prevList = prevJson.articlesData.articles
                     list.articles = prevList + list.articles
-                   
+                    
                 }
             }
             
-          
             dispatch(ArticlesFetchedAction(articlesData: list))
             
             DispatchQueue.main.async
                 {
-                  UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                }
-            
-            
-            }.resume()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            }
+             
+        })
+        
+       
     }
     
 
@@ -119,10 +121,9 @@ class ViewController: UIViewController {
     {
         didSet
             {
-                
                 tableView.reloadData()
                 isLoading = false
-        }
+            }
         
     }
     
@@ -132,8 +133,15 @@ class ViewController: UIViewController {
    
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
        
+        
+        //Since this is the initial ViewController, it will be loaded when running tests and we don't want that !!
+        if NSClassFromString("XCTestCase") != nil
+        {
+            return
+        }
         
       listenerSubscription = store.addListener(forStateType: FetchArticles.self) { [weak self] state in
         

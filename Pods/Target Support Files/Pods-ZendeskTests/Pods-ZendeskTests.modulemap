@@ -1,0 +1,6 @@
+framework module Pods_ZendeskTests {
+  umbrella header "Pods-ZendeskTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
